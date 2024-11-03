@@ -1,10 +1,25 @@
-# xvcd-ch347
- CH347 Xilinx Virtual Cable
- xvcd_ch347 of XVC (Xilinx Virtual Cable) protocol based on xvcd (https://github.com/tmbinc/xvcd) 
- 1. compile
-    gcc io_ch347.c xvcd_win.c CH347DLLA64.DLL -lws2_32 -o xvcd_ch347.exe
-    Regarding CH347DLLA64.DLL, you can obtain it from here : https://www.wch.cn/downloads/CH341PAR_ZIP.html
- 2. About clock
-    Support : KHZ(468.75), KHZ(937.5), MHZ(1.875), MHZ(3.75), MHZ(7.5), MHZ(15), MHZ(30), MHZ(60)
-    If you need to set a 10MHz clock, choose 15MHz or 7.5MHz, and modify the DEFAULT_JTAG-SPEED variable in xvcd_win. c to correspond to the clock, such as 150000000
- 3. If you have a better way to accelerate the speed of this xvcd, please communicate with me for research, or if there are other integrated methods such as Vivado, we can also communicate together. If there are results, we can open them up again to serve more developers, oidcatiot@outlook.com
+# WCH-CH347-XVCD-DAEMON
+CH347 Xilinx Virtual Cable Daemon
+xvcd_ch347 of XVC (Xilinx Virtual Cable) protocol based on xvcd (https://github.com/tmbinc/xvcd) 
+
+Based on [xvcd-ch347](https://github.com/AIOT-CAT/xvcd-ch347)
+
+# Claims
+File `CH347DLL.h`, `CH347DLLA64.dll` are property/properties of WCH group, this project does not have the rights of them.
+
+This project has ABSULUTELY NO WARRENTY, use this as researching purpose. For critical environments, use Xilinx's official download cables instead.
+
+# Dependencies
+
+1. WCH CH347 Device Driver, you can obtain it from [here](https://www.wch.cn/downloads/CH341PAR_EXE.html).
+2. xmake
+3. Windows 10 SDK or Windows 11 SDK, only 64 bit with x86_64 arch versions are supported.
+4. msvc16 and later to have a better support for C.
+
+# How to build
+Install you dependencies first,then do `git clone https://github.com/DCZYewen/WCH-CH347-XVCD-Daemon`, and get into the project folder.
+
+Run `xmake build` to build the project. You can also run `xmake run` to run the program directly.
+
+If you wanted to debug it under Visual Studio, run `xmake project -k vsxmake`, it will create the Visual Studio `.sln` for you.
+
