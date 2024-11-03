@@ -1,0 +1,5 @@
+target("ch347_xvcd_daemon")
+    set_kind("binary")
+    add_files("src/*.c")
+    add_includedirs("include/")
+    add_links("lib/CH347DLLA64.lib")
