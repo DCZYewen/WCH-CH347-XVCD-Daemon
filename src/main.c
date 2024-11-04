@@ -177,7 +177,7 @@ int handle_data(SOCKET fd, unsigned long frequency)
             memcpy(result, xvcInfo, strlen(xvcInfo));
 
             if (swrite(fd, result, strlen(xvcInfo)) != 1) {
-                printf("[%d]write %d bytes != %d\n", __LINE__, retVal, strlen(xvcInfo));
+                printf("[%d]write %d bytes != %zu\n", __LINE__, retVal, strlen(xvcInfo));
                 return 1;
             }
             if (vlevel > 0) {
@@ -402,7 +402,7 @@ int main(int argc, char** argv)
 
                     newfd = accept(s, (struct sockaddr*)&address, &nsize);
                     if (verbose) {
-                        printf("connection accepted - fd %d\n", newfd);
+                        printf("connection accepted - fd %llu\n", newfd);
                     }
                     if (newfd == INVALID_SOCKET) {
                         printf("accept failed with error: %d\n", WSAGetLastError());
@@ -437,7 +437,7 @@ int main(int argc, char** argv)
                     if (r) {
                         // Close connection when required.
                         if (verbose)
-                            printf("connection closed - fd %d\n", fd);
+                            printf("connection closed - fd %llu\n", fd);
                         closesocket(fd);
                         FD_CLR(fd, &conn);
                     }
@@ -446,7 +446,7 @@ int main(int argc, char** argv)
             // Abort connection?
             else if (FD_ISSET(fd, &except)) {
                 if (verbose) {
-                    printf("connection aborted - fd %d\n", fd);
+                    printf("connection aborted - fd %llu\n", fd);
                 }
                 closesocket(fd);
                 FD_CLR(fd, &conn);
